@@ -1,0 +1,22 @@
+.three-container {
+    margin: 10vh 0;
+    display: flex;
+    justify-content: center;
+}
+
+.three-scene-container{
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .three-container {
+        margin: 2vh;
+    }
+
+    .three-scene-container{
+        display: flex;
+        justify-content: center;
+    }
+
+}
+  

@@ -1,0 +1,24 @@
+.schedule-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100vw;
+}
+
+.schedule-container h1 {
+    text-align: center;
+    margin: 3vh 0;
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: #ccc;
+}
+
+@media (min-width: 768px) {
+    .schedule-container {
+        width: 80vw;
+    }
+
+    .schedule-container h1 {
+        font-size: 3rem;
+    }
+}

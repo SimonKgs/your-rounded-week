@@ -1,0 +1,57 @@
+.title-component {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    will-change: text-shadow, transform;
+}
+
+.word-container {
+    display: flex;
+}
+
+.title-component span {
+    display: inline-block;
+    color: transparent;
+    background-image: linear-gradient(45deg, #ff4b2b, #ff416c, #4facfe, #00f2fe, #00f2fe, #4facfe);
+    background-clip: text;
+    -webkit-background-clip: text;
+    position: relative;
+    animation: glowing 3s infinite;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Glowing effect */
+@keyframes glowing {
+    0%, 100% {
+        text-shadow: 0 0 3px rgba(255, 255, 255, 0.4), 0 0 5px rgba(255, 255, 255, 0.2); /* Reduced blur and opacity */
+    }
+    50% {
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.6), 0 0 15px rgba(255, 255, 255, 0.4); /* Reduced blur and opacity */
+    }
+}
+
+/* Hover effect */
+.title-component span:hover {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.4); /* Reduced blur and opacity */
+    transform: scale(1.05); /* Slightly less scaling */
+}
+
+
+.title-component.paused {
+    animation-play-state: paused;
+}
+  
+
+@media (min-width: 768px) {
+    .title-component {
+        font-size: 4rem;
+        gap: 20px;
+    } 
+}
+

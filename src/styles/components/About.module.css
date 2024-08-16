@@ -1,0 +1,32 @@
+.about-container {
+    padding: 20px;
+    background-color: #f4f4f42f;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 800px;
+    text-align: center;
+}
+.about-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+.about-text {
+    font-size: 0.8rem;
+    color: #ffe;
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+@media (min-width: 768px) {
+    .about-title {
+        font-size: 2rem;
+
+    }
+
+    .about-text {
+        font-size: 1rem;
+    }
+}

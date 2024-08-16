@@ -1,0 +1,18 @@
+.footer-container {
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+.footer-text {
+    margin: 0;
+}
+
+@media (min-width: 768px) {
+    .footer-container {
+        font-size: 1rem;
+    }
+    
+}
