@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Schedule, Note } from '../interfaces/schedule.interfaces';
 import { generateEmptySchedule } from '../utils/scheduleUtils';
+import { int } from 'three/webgpu';
 
 // Custom hook for managing a weekly schedule and adding notes
 const useSchedule = () => {
@@ -19,8 +20,9 @@ const useSchedule = () => {
       const startTimeString = convertHourToTimeString(newNote.startTime);
 
       // Calculate end time based on duration
-      const endtime = newNote.startTime + newNote.duration
+      const endtime: number = Number(newNote.startTime) + Number(newNote.duration);
       const endTimeString = convertHourToTimeString(endtime);
+      
 
       // Find the index of the time slot where the note starts
       const startSlotIndex = updatedSchedule[newNote.day].findIndex(slot => slot.time === startTimeString);
@@ -28,18 +30,24 @@ const useSchedule = () => {
       // Find the index of the time slot where the note ends (exclude end hour)
       const endSlotIndex = updatedSchedule[newNote.day].findIndex(slot => slot.time === endTimeString);
 
-      if (startSlotIndex === -1 || endSlotIndex === -1) {
+      // Adjust endSlotIndex if it’s not found
+      const lastSlotIndex = updatedSchedule[newNote.day].length;
+      const actualEndSlotIndex = endSlotIndex !== -1 ? endSlotIndex : lastSlotIndex;
+      
+      
+      if (startSlotIndex === -1 || actualEndSlotIndex === -1) {
         alert('Invalid time slots');
         return prevSchedule; // Return unchanged schedule if times are invalid
       }
 
+
       // Clear existing notes in the relevant time slots (exclude end hour)
-      for (let i = startSlotIndex; i < endSlotIndex; i++) {
+      for (let i = startSlotIndex; i < actualEndSlotIndex; i++) {
         updatedSchedule[newNote.day][i].notes = [];
       }
 
       // Add the new note to the relevant time slots (exclude end hour)
-      for (let i = startSlotIndex; i < endSlotIndex; i++) {
+      for (let i = startSlotIndex; i < actualEndSlotIndex; i++) {
         updatedSchedule[newNote.day][i].notes.push(newNote);
       }
 
