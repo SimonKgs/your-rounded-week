@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Schedule, Note } from '../interfaces/schedule.interfaces';
 import { generateEmptySchedule } from '../utils/scheduleUtils';
-import { int } from 'three/webgpu';
 
 // Custom hook for managing a weekly schedule and adding notes
 const useSchedule = () => {
