@@ -53,7 +53,7 @@ export const ScheduleTable: React.FC<ScheduleProps> = ({ schedule }) => {
                     key={noteIndex} 
                     style={{ backgroundColor: note.color }}
                   >
-                    {note.startTime}:00/{note.duration}:00 - {note.desc}
+                    {note.desc}
                   </div>
                 ))}
               </td>

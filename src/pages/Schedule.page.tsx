@@ -10,6 +10,7 @@ export const Schedule: React.FC = () => {
   // Handle note addition
   const handleAddNote = (note: Note) => {
     addNoteToSchedule(note);
+    console.log(schedule)
   };
 
   return (
