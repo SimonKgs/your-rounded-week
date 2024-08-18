@@ -3,6 +3,8 @@ import useSchedule from '../hooks/useSchedule';
 import { NoteForm, ScheduleTable} from '../components';
 import { scheduleStyles } from '../styles';
 import { Note } from '../interfaces/schedule.interfaces';
+import { exportScheduleToCSV } from '../utils/csvGenerator'
+
 
 export const Schedule: React.FC = () => {
   const { schedule, addNoteToSchedule } = useSchedule();
@@ -23,6 +25,11 @@ export const Schedule: React.FC = () => {
       />
 
       <ScheduleTable schedule={schedule} />
+      <div>
+        <button onClick={() => exportScheduleToCSV(schedule)}>
+          Export Schedule to CSV
+        </button>
+      </div>
     </div>
   );
 };
