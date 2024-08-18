@@ -38,7 +38,7 @@ export function exportScheduleToCSV(schedule: Schedule) {
           }
 
           // Fill the correct column for the day
-          targetRow[headers.indexOf(day)] = `${note.desc} (color: ${note.color})`;
+          targetRow[headers.indexOf(day)] = `${note.desc}`;
         }
       } 
     });
@@ -54,5 +54,5 @@ export function exportScheduleToCSV(schedule: Schedule) {
 
   // Create a Blob object for the CSV data and trigger download
   const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
-  saveAs(blob, 'schedule.csv');
+  saveAs(blob, 'rounded_week_schedule.csv');
 }
