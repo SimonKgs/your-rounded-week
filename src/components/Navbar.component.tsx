@@ -19,10 +19,10 @@ export const Navbar: React.FC = () => {
             ☰
             </button>
             <ul className={`${navbarStyles.menu} ${isMenuOpen ? navbarStyles.open : ''}`}>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/about">About</Link></li>
-                <li><Link to="/schedule">Schedule</Link></li>
-                <li><Link to="/contact">Contact</Link></li>
+                <li onClick={handleToggleMenu}><Link to="/">Home</Link></li>
+                <li onClick={handleToggleMenu}><Link to="/about">About</Link></li>
+                <li onClick={handleToggleMenu}><Link to="/schedule">Schedule</Link></li>
+                <li onClick={handleToggleMenu}><Link to="/contact">Contact</Link></li>
         </ul>
       </div>
     </nav>
