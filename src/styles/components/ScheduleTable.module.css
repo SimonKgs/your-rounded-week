@@ -8,6 +8,10 @@
 .table th, .table td {
     color: #ccc;
     border-right: 1px solid #ccc;
+    max-width: 5vw;            /* Set a max width for the cells */
+    overflow: hidden;            /* Hide overflow content */
+    text-overflow: ellipsis;     /* Display ellipsis for overflow text */
+    white-space: nowrap;  
 }
 
 /* Remove the right border for the last column */
@@ -41,7 +45,7 @@
 @media (min-width: 768px) {
 
     .table th {
-        font-size: 1.6rem;
+        font-size: 1rem;
         font-weight: 600;
     }
 

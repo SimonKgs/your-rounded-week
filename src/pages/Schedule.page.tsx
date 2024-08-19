@@ -25,12 +25,12 @@ export const Schedule: React.FC = () => {
       />
 
       <ScheduleTable schedule={schedule} />
-      <div>
+      <div className={scheduleStyles['schedule-download-container']}>
         <button onClick={() => exportScheduleToCSV(schedule)}>
-          Export Schedule to CSV
+          Download as CSV
         </button>
         <button onClick={() => exportScheduleToExcel(schedule)}>
-          Export Schedule to Excel
+          Download as Excel
         </button>
       </div>
     </div>

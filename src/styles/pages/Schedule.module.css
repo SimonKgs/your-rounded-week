@@ -13,12 +13,39 @@
     color: #ccc;
 }
 
+.schedule-download-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem ;
+    gap: 10px;
+}
+
+.schedule-download-container button {
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    background-color: #ccc;
+    color: #000;
+    cursor: pointer;
+}
+
+
+.note-form-container button:active, note-form-container button:focus {
+    background-color: #000;
+    color: #fff;
+}
+
 @media (min-width: 768px) {
     .schedule-container {
-        width: 80vw;
+        width: 90vw;
     }
 
     .schedule-container h1 {
         font-size: 3rem;
+    }
+
+    .schedule-download-container button:hover {
+        background-color: #000;
+        color: #fff;
     }
 }

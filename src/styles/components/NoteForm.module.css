@@ -1,18 +1,18 @@
 .note-form-container {
     display: flex;
-    justify-content: space-around;
-    margin: 2vh 0;
-    align-items: end;
+    margin: 0 5vw;
+    flex-direction: column;
 }
 
 .input-group {
     display: flex;
     flex-direction: column;
+    margin: 0.5rem 0;
 }
 
 .input-group label {
     color: #ccc;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
 }
@@ -27,10 +27,44 @@
 }
 
 .note-form-container button {
-    height: 3rem;
-    padding: 1rem;
+    margin: 1rem 0;
+    height: 2rem;
     border: none;
     border-radius: 0.5rem;
     background-color: #fff;
-    color: #aaa;
+    color: #000;
+}
+
+.note-form-container button:active, note-form-container button:focus {
+    background-color: #000;
+    color: #fff;
+}
+
+@media (min-width: 768px) {
+    .note-form-container {
+        display: flex;
+        gap: 10px;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: end;
+    } 
+    
+    .input-group {
+        width: 100%;
+    }
+
+    .note-form-container button {
+        margin: 0.5rem 0;
+        margin: 0.5rem 0;
+        padding: unset;
+        height: 2rem;
+        width: 100%;
+    }
+
+    .note-form-container button:hover {
+        background-color: #000;
+        color: #fff;
+        cursor: pointer;
+    }
+
 }
