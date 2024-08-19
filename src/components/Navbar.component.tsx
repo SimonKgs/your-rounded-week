@@ -15,15 +15,14 @@ export const Navbar: React.FC = () => {
   return (
     <nav className={navbarStyles.nav}>
         <div className={navbarStyles.navbar}>
-            <button className={navbarStyles.menuToggle} onClick={handleToggleMenu}>
-            ☰
-            </button>
-            <ul className={`${navbarStyles.menu} ${isMenuOpen ? navbarStyles.open : ''}`}>
-                <li onClick={handleToggleMenu}><Link to="/">Home</Link></li>
-                <li onClick={handleToggleMenu}><Link to="/about">About</Link></li>
-                <li onClick={handleToggleMenu}><Link to="/schedule">Schedule</Link></li>
-                <li onClick={handleToggleMenu}><Link to="/contact">Contact</Link></li>
-        </ul>
+          <button className={navbarStyles.menuToggle} onClick={handleToggleMenu}>
+          ☰
+          </button>
+          <ul className={`${navbarStyles.menu} ${isMenuOpen ? navbarStyles.open : ''}`}>
+              <li onClick={handleToggleMenu}><Link to="/">Home</Link></li>
+              <li onClick={handleToggleMenu}><Link to="/about">About</Link></li>
+              <li onClick={handleToggleMenu}><Link to="/schedule">Schedule</Link></li>
+          </ul>
       </div>
     </nav>
   )

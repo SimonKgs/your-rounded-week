@@ -8,7 +8,7 @@ export const CallToSchedule: React.FC = () => {
       <p className={ctsStyles['cta-text']}>
         Dive into our interactive schedule and start managing your week efficiently.
       </p>
-      <a href="#schedule" className={ctsStyles['cta-button']}>Try it Now</a>
+      <a href="schedule" className={ctsStyles['cta-button']}>Try it Now</a>
     </section>
   );
 };
