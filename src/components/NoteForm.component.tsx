@@ -8,7 +8,7 @@ import { NoteFormProps } from '../interfaces/schedule.interfaces'
 export const NoteForm: React.FC<NoteFormProps> = ({ onAddNote, editingNote, onDeleteNote, onEditNote }) => {
   // Local state for new note inputs
   const [note, setNote] = useState<Note>({
-    color: '#FFFFFF',
+    color: '#000000',
     day: '',
     startTime: 0,
     duration: 1,
@@ -47,7 +47,7 @@ export const NoteForm: React.FC<NoteFormProps> = ({ onAddNote, editingNote, onDe
   // clean the form
   const resetNote = () => {
     setNote({
-      color: '#FFFFFF',
+      color: '#000000',
       day: '',
       startTime: 0,
       duration: 1,

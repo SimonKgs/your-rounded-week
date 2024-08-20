@@ -20,28 +20,32 @@ const useSchedule = () => {
   }
 
   // function to add, edit and delete notes
-  const modifyNoteStateSchedule = (note: Note, deleting:boolean = false) => {
+  const modifyNoteStateSchedule = (
+    note: Note,
+    deleting:boolean = false,
+    prevNote: Note = note, 
+  ) => {
     
     setSchedule((prevSchedule) => {
       const updatedSchedule = { ...prevSchedule };
 
-      const { day, startTime, duration} = note;
+      const { startTime, duration} = note;
       const starTimeNum = Number(startTime)
       let durationNum = Number(duration)
       
-      const { slotHour } = schedule[day][starTimeNum]
       if (deleting) {
-        // when delete or edit (because it first delete and then add a new note)
-        // must get the duration of the prev note stored 
-        // if not, if the duration of the note decreased, the note will 
-        // delete or update only the new duration, losing cells
-        durationNum = +updatedSchedule[note.day][note.startTime].note.duration
+
+        durationNum = +updatedSchedule[prevNote.day][prevNote.startTime].note.duration
+        const { slotHour } = schedule[prevNote.day][+prevNote.startTime]
+
         for (let i = 0; i < durationNum && starTimeNum + i < 24; i++) {
-          updatedSchedule[day][slotHour + i] = { slotDay: day, slotHour , note: emptyNote};
+          updatedSchedule[prevNote.day][slotHour + i] = { slotDay: prevNote.day, slotHour , note: emptyNote};
         }
       } else {
+        const { slotHour } = schedule[note.day][starTimeNum]
+
         for (let i = 0; i < durationNum && starTimeNum + i < 24; i++) {
-          updatedSchedule[day][slotHour + i] = { slotDay: day, slotHour , note: note};
+          updatedSchedule[note.day][slotHour + i] = { slotDay: note.day, slotHour , note: note};
         }
       }
 

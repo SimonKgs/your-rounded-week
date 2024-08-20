@@ -12,7 +12,7 @@ export const generateEmptySchedule = (): Schedule => {
         slotDay: day,
         slotHour: hour,
         note: {
-          color: '#000000',
+          color: '#FFFFFF',
           day: '',
           startTime: 0,
           duration: 1,

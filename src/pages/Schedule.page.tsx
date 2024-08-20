@@ -9,6 +9,7 @@ import { exportScheduleToExcel } from '../utils/xlsxGenerator'
 export const Schedule: React.FC = () => {
   const { schedule, modifyNoteStateSchedule } = useSchedule();
   const [editingNote, setEditingNote] = useState<Note | undefined>(undefined);
+  const [prevNote, setPrevNote] = useState<Note | undefined>(undefined); 
 
   // Handle note addition
   const handleAddNote = (note: Note) => {
@@ -23,12 +24,15 @@ export const Schedule: React.FC = () => {
   };
 
   // handle deletion
+  // It need the previous note to apply the delete on the correct place
+  // it could happen on edit note
   const handleDeleteNote = (note: Note) => {
-    modifyNoteStateSchedule(note, true)
+    modifyNoteStateSchedule(note, true, prevNote)
   }
 
   // to pass the note to the form
   const passNoteToNoteForm = (note: Note) => {
+      setPrevNote({...note})
       setEditingNote(note);
   }
 
