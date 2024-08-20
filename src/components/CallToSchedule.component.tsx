@@ -1,5 +1,6 @@
 import React from 'react';
 import { ctsStyles } from '../styles';
+import { Link } from 'react-router-dom';
 
 export const CallToSchedule: React.FC = () => {
   return (
@@ -8,7 +9,9 @@ export const CallToSchedule: React.FC = () => {
       <p className={ctsStyles['cta-text']}>
         Dive into our interactive schedule and start managing your week efficiently.
       </p>
-      <a href="schedule" className={ctsStyles['cta-button']}>Try it Now</a>
+      <Link to="/schedule" className={ctsStyles['cta-button']}>
+        Try it Now
+      </Link>
     </section>
   );
 };
