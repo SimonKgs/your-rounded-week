@@ -18,7 +18,7 @@ export function exportScheduleToCSV(schedule: Schedule) {
     headers.slice(1).forEach(day => {
       const timeSlot = schedule[day as Day][hour];
       // must convert starTime to number
-      const note: Note | undefined = timeSlot.notes.find((note: Note) => +note.startTime === hour);
+      const note: Note | undefined = timeSlot.note;
 
       if (note) {
         // Fill the row for the note's duration

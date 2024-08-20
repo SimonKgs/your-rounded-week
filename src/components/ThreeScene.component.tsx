@@ -75,7 +75,7 @@ export const ThreeScene: React.FC = () => {
       console.log('Cleaning...')
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('resize', handleResize);
-      // very importatnt to not accumulate weight in memory
+      // VERY IMPORTANT to not accumulate weight in memory
       renderer.forceContextLoss();
       // From here also important dispose all to clean memory usage
       renderer.dispose(); 

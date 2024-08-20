@@ -35,9 +35,19 @@
     color: #000;
 }
 
+
 .note-form-container button:active, note-form-container button:focus {
     background-color: #000;
     color: #fff;
+}
+
+.delete-button {
+    background-color: #ed0000 !important;
+    color: #fff !important;
+}
+
+.delete-button:hover {
+    background-color: #bd0101 !important;
 }
 
 @media (min-width: 768px) {

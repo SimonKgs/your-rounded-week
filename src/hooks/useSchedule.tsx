@@ -1,60 +1,55 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Schedule, Note } from '../interfaces/schedule.interfaces';
 import { generateEmptySchedule } from '../utils/scheduleUtils';
 
-// Custom hook for managing a weekly schedule and adding notes
+// Custom hook for managing the schedule
 const useSchedule = () => {
   const [schedule, setSchedule] = useState<Schedule>(generateEmptySchedule());
 
-  // Helper function to convert hour to time string
-  const convertHourToTimeString = (hour: number): string => {
-    return `${hour.toString().padStart(2, '0')}:00`;
-  };
+  // to update on each change
+  useEffect(() => {}, [schedule])
 
-  const addNoteToSchedule = (newNote: Note) => {
+  // empty state of a note
+  const emptyNote = {
+      color: '#FFFFFF',
+      day: '',
+      startTime: 0,
+      duration: 1,
+      desc: '',
+      editing: false
+  }
+
+  // function to add, edit and delete notes
+  const modifyNoteStateSchedule = (note: Note, deleting:boolean = false) => {
+    
     setSchedule((prevSchedule) => {
       const updatedSchedule = { ...prevSchedule };
 
-      // Convert start and end hours to time strings
-      const startTimeString = convertHourToTimeString(newNote.startTime);
-
-      // Calculate end time based on duration
-      const endtime: number = Number(newNote.startTime) + Number(newNote.duration);
-      const endTimeString = convertHourToTimeString(endtime);
+      const { day, startTime, duration} = note;
+      const starTimeNum = Number(startTime)
+      let durationNum = Number(duration)
       
-
-      // Find the index of the time slot where the note starts
-      const startSlotIndex = updatedSchedule[newNote.day].findIndex(slot => slot.time === startTimeString);
-      
-      // Find the index of the time slot where the note ends (exclude end hour)
-      const endSlotIndex = updatedSchedule[newNote.day].findIndex(slot => slot.time === endTimeString);
-
-      // Adjust endSlotIndex if it’s not found
-      const lastSlotIndex = updatedSchedule[newNote.day].length;
-      const actualEndSlotIndex = endSlotIndex !== -1 ? endSlotIndex : lastSlotIndex;
-      
-      
-      if (startSlotIndex === -1 || actualEndSlotIndex === -1) {
-        alert('Invalid time slots');
-        return prevSchedule; // Return unchanged schedule if times are invalid
-      }
-
-
-      // Clear existing notes in the relevant time slots (exclude end hour)
-      for (let i = startSlotIndex; i < actualEndSlotIndex; i++) {
-        updatedSchedule[newNote.day][i].notes = [];
-      }
-
-      // Add the new note to the relevant time slots (exclude end hour)
-      for (let i = startSlotIndex; i < actualEndSlotIndex; i++) {
-        updatedSchedule[newNote.day][i].notes.push(newNote);
+      const { slotHour } = schedule[day][starTimeNum]
+      if (deleting) {
+        // when delete or edit (because it first delete and then add a new note)
+        // must get the duration of the prev note stored 
+        // if not, if the duration of the note decreased, the note will 
+        // delete or update only the new duration, losing cells
+        durationNum = +updatedSchedule[note.day][note.startTime].note.duration
+        for (let i = 0; i < durationNum && starTimeNum + i < 24; i++) {
+          updatedSchedule[day][slotHour + i] = { slotDay: day, slotHour , note: emptyNote};
+        }
+      } else {
+        for (let i = 0; i < durationNum && starTimeNum + i < 24; i++) {
+          updatedSchedule[day][slotHour + i] = { slotDay: day, slotHour , note: note};
+        }
       }
 
       return updatedSchedule;
     });
   };
 
-  return { schedule, addNoteToSchedule };
+  return { schedule, modifyNoteStateSchedule };
 };
 
 export default useSchedule;

@@ -9,8 +9,16 @@ export const generateEmptySchedule = (): Schedule => {
     const timeSlots: TimeSlot[] = [];
     for (let hour = 0; hour < 24; hour++) {
       timeSlots.push({
-        time: `${hour.toString().padStart(2, '0')}:00`,
-        notes: []
+        slotDay: day,
+        slotHour: hour,
+        note: {
+          color: '#000000',
+          day: '',
+          startTime: 0,
+          duration: 1,
+          desc: '',
+          editing: false
+        }
       });
     }
     schedule[day] = timeSlots;

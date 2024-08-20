@@ -1,28 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Note } from '../interfaces/schedule.interfaces';
 import { noteFormStyles } from '../styles'
+import { NoteFormProps } from '../interfaces/schedule.interfaces'
 
-interface NoteFormProps {
-  onAddNote: (note: Note) => void;
-}
 
-export const NoteForm: React.FC<NoteFormProps> = ({ onAddNote }) => {
+export const NoteForm: React.FC<NoteFormProps> = ({ onAddNote, editingNote, onDeleteNote, onEditNote }) => {
   // Local state for new note inputs
   const [note, setNote] = useState<Note>({
-    color: '#000000',
+    color: '#FFFFFF',
     day: '',
     startTime: 0,
     duration: 1,
-    desc: ''
+    desc: '',
+    editing: false
   });
+
+  useEffect(() => {
+      if (editingNote) {
+          setNote({
+            ...editingNote,
+            editing: true
+          });
+      }
+  }, [editingNote]);
+
 
   // Update state based on input changes
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-
-    // Add this line to log the changes and see the value when changing the color
-    // console.log(`Input name: ${name}, Input value: ${value}`);
 
     setNote(prevNote => ({
       ...prevNote,
@@ -38,23 +44,46 @@ export const NoteForm: React.FC<NoteFormProps> = ({ onAddNote }) => {
            note.desc.trim() !== '';
   };
 
-  const handleSubmit = () => {
+  // clean the form
+  const resetNote = () => {
+    setNote({
+      color: '#FFFFFF',
+      day: '',
+      startTime: 0,
+      duration: 1,
+      desc: '',
+      editing: false
+    });
+  }
+
+  // adding a new note
+  const handleSubmit = async () => {
+    
     if (!isValidNote()) {
-      alert('Please fill out all fields.');
+      alert('There is an error');
       return;
     }
 
     onAddNote(note);
 
-    // Reset the note state to empty values
-    setNote({
-      color: '#000000',
-      day: '',
-      startTime: 0,
-      duration: 1,
-      desc: ''
-    });
+    resetNote()
   };
+
+  // editing note
+  const editNote = () => {
+    if (!isValidNote()) {
+      alert('There is an error');
+      return;
+    }
+    onEditNote(note)
+    resetNote()
+  }
+
+  // deleting note
+  const deleteNote = () => {
+    onDeleteNote(note)
+    resetNote()
+  }
 
   const daysOfWeek = [
     'Monday',
@@ -70,7 +99,6 @@ export const NoteForm: React.FC<NoteFormProps> = ({ onAddNote }) => {
     <div className={noteFormStyles['note-form-container']}>
       <div className={noteFormStyles['input-group']}>
         <label htmlFor="desc">Task:</label>
-        {/* TODO: see why a chunk two-digits-hexa */}
         <input 
           type="text" 
           name="desc" 
@@ -120,8 +148,17 @@ export const NoteForm: React.FC<NoteFormProps> = ({ onAddNote }) => {
             onChange={handleInputChange} 
           />
       </div>
+      {note.editing && (
+          <button className={noteFormStyles['delete-button']} onClick={deleteNote}>Delete</button>
+      )}
+
+      {note.editing ? (
+          <button onClick={editNote}>Edit note</button>
+      ) : (
+        <button onClick={handleSubmit}>Add new note</button>
+      )
+      }
       
-      <button onClick={handleSubmit}>Add new note</button>
     </div>
   );
 };

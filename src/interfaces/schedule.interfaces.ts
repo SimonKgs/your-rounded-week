@@ -3,12 +3,21 @@ export interface Note {
     desc: string;
     day: string;
     startTime: number; 
-    duration: number; 
+    duration: number;
+    editing?: boolean;
+}
+
+export interface NoteFormProps {
+    onAddNote: (note: Note) => void;
+    editingNote?: Note;
+    onDeleteNote: (note: Note) => void;
+    onEditNote: (note: Note) => void;
 }
 
 export interface TimeSlot {
-    time: string; 
-    notes: Note[];
+    slotDay: string;
+    slotHour: number;
+    note: Note;
 }
 
 export interface Schedule {
@@ -19,6 +28,7 @@ export interface Schedule {
 // src/interfaces/schedule.interfaces.ts
 export interface ScheduleProps {
     schedule: Schedule;
+    onPassNote: (note: Note) => void;
 }
 
 

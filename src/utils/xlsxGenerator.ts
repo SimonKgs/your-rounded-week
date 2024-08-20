@@ -52,7 +52,7 @@ export async function exportScheduleToExcel(schedule: Schedule) {
     for (let hour = 0; hour < 24; hour++) {
       headers.slice(1).forEach(day => {
         const timeSlot = schedule[day as Day][hour];
-        const note: Note | undefined = timeSlot.notes.find(note => +note.startTime === hour);
+        const note: Note | undefined = timeSlot.note;
 
         if (note) {
           const endHour = Math.min(+hour + (+note.duration), 24) - 1;
