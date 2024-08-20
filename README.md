@@ -5,7 +5,7 @@ This is a web app created from scratch using TypeScript, React, and libraries li
 The app was developed to refresh my knowledge of React after a long period using other technologies. It served as a valuable exercise in state management, integrating new libraries, and problem-solving.
 
 You can see the app:
-Your rounded week [https://your-rounded-week.netlify.app/]
+[Your rounded week](https://your-rounded-week.netlify.app/)
 
 ## Installation
 
