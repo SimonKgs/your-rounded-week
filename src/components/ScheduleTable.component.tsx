@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { Note, ScheduleProps } from '../interfaces/schedule.interfaces'
+import { ScheduleProps } from '../interfaces/schedule.interfaces'
 
 import { scheduleTableStyles } from '../styles'
 
